@@ -1,0 +1,26 @@
+# IDE
+/.idea/
+.vscode/
+.cursor/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Data & logs
+/data_preprocessor/dataset_paths.json
+/adni_pipeline/dataset_prep/ADNI/adni_paths.json
+/wandb_config.json
+/logs/
+wandb/
+
+# OS
+.DS_Store
+
+# Other
+.gitattributes
+/arxiv/
+.ipynb_checkpoints/
