@@ -1,0 +1,5 @@
+{
+  "entity": "your-wandb-entity",
+  "wearable_project": "Flux-wearable",
+  "adni_project": "Flux-ADNI"
+}

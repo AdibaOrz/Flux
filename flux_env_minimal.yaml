@@ -1,0 +1,32 @@
+# Minimal conda environment
+#
+# Covers imports used in Python sources:
+#   PyTorch stack, numpy, pandas, scipy, scikit-learn, tqdm
+#   wandb, pyfiglet (pip)
+#   matplotlib, seaborn — data_simulation/check_simulated_data.ipynb
+#   mne — data_preprocessor/preprocess_sleepedfx/ (Sleep-EDF-Expanded EDF I/O only)
+#
+# Linux + NVIDIA GPU (CUDA 11.8):
+#   conda env create -f flux.yaml
+
+name: flux
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - tqdm
+  - matplotlib
+  - seaborn
+  - mne
+  - pytorch
+  - pytorch-cuda=11.8
+  - pip
+  - pip:
+      - wandb
+      - pyfiglet
