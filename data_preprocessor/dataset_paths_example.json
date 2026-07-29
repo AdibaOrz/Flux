@@ -1,0 +1,23 @@
+{
+  "pamap2": {
+    "raw": "/path/to/datasets/pamap2/raw",
+    "processed": "/path/to/datasets/pamap2/processed",
+    "simulated": "/path/to/datasets/pamap2/simulated"
+  },
+  "realworldhar": {
+    "raw_unzipped": "/path/to/datasets/realworldhar/raw_unzipped",
+    "raw": "/path/to/datasets/realworldhar/raw",
+    "processed": "/path/to/datasets/realworldhar/processed",
+    "simulated": "/path/to/datasets/realworldhar/simulated"
+  },
+  "sleepedf20": {
+    "raw": "/path/to/datasets/sleepedf20/raw",
+    "processed": "/path/to/datasets/sleepedf20/processed",
+    "simulated": "/path/to/datasets/sleepedf20/simulated"
+  },
+  "sleepedfx": {
+    "raw": "/path/to/datasets/sleepedfx/raw",
+    "processed": "/path/to/datasets/sleepedfx/processed",
+    "simulated": "/path/to/datasets/sleepedfx/simulated"
+  }
+}
