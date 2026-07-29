@@ -1,0 +1,6 @@
+{
+  "adni_root": "/path/to/datasets/ADNI",
+  "downloaded_date": "DDMonYYYY",
+  "mri_reference_atlas": "/path/to/fsl/data/standard/MNI152_T1_2mm_brain.nii.gz",
+  "mri_rename_source_dir": "/path/to/downloaded/MRI/directory/to/rename"
+}
