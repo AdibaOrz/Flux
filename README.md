@@ -4,16 +4,14 @@ This repository contains the official implementation of **FLUX** and the federat
 
 ## Overview
 
-Real-world multimodal federated learning faces **modality incompleteness** — sensors may be unavailable (static) or unstable (dynamic) across clients. FLUX uses **per-modality confidence heads** and **confidence tempering** (temperature scaling from predicted log-variance) so fusion stays robust when modalities are partially missing.
+Real-world multimodal federated learning faces modality incompleteness — sensors may be unavailable (static missingness) or unstable (dynamic missingness) across clients. FLUX addresses this with two complementary components: (1) **modality-aware confidence tempering**, which learns sample-specific confidence per modality via mask-aware unimodal supervision and fuses observed modalities into a sample-adaptive temperature; and (2) **gradient-decoupled private adaptation**, which applies tempering only on a client-private prediction pathway while training the shared federated model with a standard, untempered objective. This yields client-local, evidence-aware calibration without letting confidence-dependent gradients perturb shared representation learning.
 
 This codebase supports:
 - **FLUX** (our method)
 - **7 baselines**: FedAvg, FedProx, FedPer, FedRoD, MOON, PmcmFL, PEPSY
-- **Three public sensor datasets** for the main FL entry (`main.py`): PAMAP2, RealWorld HAR, Sleep-EDF-20
-- **ADNI pipeline**: A separate clinical multimodal path under `adni_pipeline/`
-- Configurable modality incompleteness simulation (availability and stability)
+- **Four datasets**: three wearable health-sensing benchmarks (PAMAP2, RealWorld HAR, Sleep-EDF-20) via `main.py`, and one clinical multimodal dataset (ADNI) via `adni_pipeline/`
+- **Configurable missingness simulation**: health sensing benchmarks — availability and stability (`data_simulation/`); ADNI — inter-client availability and optional intra-client dropout on top of natural missingness (`adni_pipeline/dataset_prep/ADNI/partitioner/simulate_missingness.py`)
 
-Sleep-EDF-20 preprocessing in this repo expects a merged CSV produced from the Sleep-EDF-Expanded pipeline; see [`data_preprocessor/preprocess_sleepedf20/readme_sleepedf20.md`](data_preprocessor/preprocess_sleepedf20/readme_sleepedf20.md). Configure a `sleepedfx` entry in `dataset_paths.json` for those intermediate paths (see [`data_preprocessor/dataset_paths_example.json`](data_preprocessor/dataset_paths_example.json)).
 
 ## Repository Structure
 
@@ -38,7 +36,7 @@ Sleep-EDF-20 preprocessing in this repo expects a merged CSV produced from the S
 ├── data_simulation/            # Simulate modality incompleteness (availability/stability)
 ├── data_loader/                # Load preprocessed tensor data for FL training
 │
-├── utils/                      # Utilities (seeding, wandb helpers, pretty printing)
+├── utils/                      # Utilities (seeding, wandb helpers)
 ├── run/                        # Shell scripts
 │
 └── adni_pipeline/              # Self-contained ADNI experiment pipeline
@@ -177,5 +175,20 @@ bash adni_pipeline/run/run_all_adni.sh
 ```
 
 ## Citation
+If you use this code in your research, please cite:
 
-Coming soon.
+**[Multimodal Federated Learning under Dual-Axis Modality Missingness](https://arxiv.org/abs/2608.09240)**
+
+Adiba Orzikulova\*, Jaehyun Kwak\*, Jaemin Shin, Yunqi Guo, Xiaomin Ouyang, Guoliang Xing, Steven Euijong Whang, and Sung-Ju Lee (\*Equal contribution)
+
+```bibtex
+@misc{orzikulova2026multimodal,
+  title         = {Multimodal Federated Learning under Dual-Axis Modality Missingness},
+  author        = {Orzikulova, Adiba and Kwak, Jaehyun and Shin, Jaemin and Guo, Yunqi and Ouyang, Xiaomin and Xing, Guoliang and Whang, Steven Euijong and Lee, Sung-Ju},
+  year          = {2026},
+  eprint        = {2608.09240},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url           = {https://arxiv.org/abs/2608.09240}
+}
+```
